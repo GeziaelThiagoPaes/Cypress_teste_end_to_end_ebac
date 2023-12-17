@@ -16,7 +16,6 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.fixture('perfil').then((dados) => {
             cy.login(dados.usuario, dados.senha)
         })
-
         cy.adicionar_produtos(1, 'Ajax Full-Zip Sweatshirt', 'XS', 'Blue', 2)
         cy.adicionar_produtos(1, 'Argus All-Weather Tank', 'M', 'Gray', 3)
         cy.adicionar_produtos(2, 'Augusta Pullover Jacket', 'XS', 'Blue', 1)
