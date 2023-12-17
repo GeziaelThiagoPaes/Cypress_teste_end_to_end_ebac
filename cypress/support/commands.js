@@ -32,10 +32,10 @@ Cypress.Commands.add('login', (usuario, senha) => {
 
 });
 
-Cypress.Commands.add('adicionar_produtos', (pagina_pesquisa, selecionar_produto, tamanho_produto, cor_produto, quantidade_produto) => {
+Cypress.Commands.add('adicionar_produtos', (pagina_pesquisa, seleciona_produto, tamanho_produto, cor_produto, quantidade_produto) => {
     cy.get('#primary-menu > .menu-item-629 > a').click()
     cy.get(`:nth-child(${pagina_pesquisa}) > .page-numbers`).click()
-    cy.get('[class="product-block grid"]').contains(selecionar_produto).click()
+    cy.get('[class="product-block grid"]').contains(seleciona_produto).click()
     cy.get(`[class="variable-item button-variable-item button-variable-item-${tamanho_produto}`).click()
     cy.get('.button-variable-item-' + cor_produto).click()
     cy.get('.woocommerce-variation-add-to-cart > .quantity').clear().type(quantidade_produto)
@@ -43,14 +43,14 @@ Cypress.Commands.add('adicionar_produtos', (pagina_pesquisa, selecionar_produto,
     cy.get('.woocommerce-message').should('contain', `seu carrinho.`)
 })
 
-Cypress.Commands.add('checkout', (forma_pagamento, adicionar_comentario) => {
+Cypress.Commands.add('checkout', (adicionaComentario) => {
     cy.get('.dropdown-toggle > .mini-cart-items').click()
     cy.get('#cart > .dropdown-menu > .widget_shopping_cart_content > .mini_cart_content > .mini_cart_inner > .mcart-border > .buttons > .view-cart').click()
     cy.get('.checkout-button').click()
-   //cy.get('[type="radio"]').check(forma_pagamento)
    cy.contains(forma_pagamento).and('[type="radio"]').check()
    cy.get('#order_comments').type()
     cy.get('#terms').check()
+    cy.get('#order_comments').type(adicionaComentario)
     cy.get('#place_order').click()
     cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
 })
