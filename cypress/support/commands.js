@@ -17,7 +17,7 @@ Cypress.Commands.add('adicionar_produtos', (pagina_pesquisa, seleciona_produto, 
 })
 
 Cypress.Commands.add('checkout', (adicionaComentario) => {
-    cy.get('.top-cart-wishlist').click()
+    cy.get('#cart > .dropdown-toggle').should('be.visible').click({force: true})
     cy.get('#cart > .dropdown-menu > .widget_shopping_cart_content > .mini_cart_content > .mini_cart_inner > .mcart-border > .buttons > .view-cart').click()
     cy.get('.checkout-button').click()
     cy.get('#order_comments').type(adicionaComentario)
